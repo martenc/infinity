@@ -1,4 +1,4 @@
 infinity
 ========
 
-Demo application like Toggl
+Demo application like Toggl using codegnitor
