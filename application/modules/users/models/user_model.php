@@ -7,6 +7,6 @@ class User_model extends CI_Model {
   }
 
   public function validate_login($username, $password) {
-
+    return true;
   }
 }
