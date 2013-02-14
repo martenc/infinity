@@ -11,7 +11,7 @@ class Users extends CI_Controller {
   }
 
   public function profile() {
-
+    $this->load->view('layouts/page_view');
   }
 
   public function login() {
