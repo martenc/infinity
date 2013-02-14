@@ -7,6 +7,22 @@ class User_model extends CI_Model {
   }
 
   public function validate_login($username, $password) {
-    return true;
+    $hash_pass = hash('sha512', $password);
+
+    $this->db->select();
+    $this->db->from($this->table_name);
+    $this->db->where('email', $username);
+    $this->db->where('password', $hash_pass);
+    $query = $this->db->get();
+
+    if ($query->num_rows() > 0) {
+      $result = $query->result_array();
+      $result = $result[0];
+      $this->set_user($result);
+      return true;
+    }
+    else {
+      redirect('user/login');
+    }
   }
 }
