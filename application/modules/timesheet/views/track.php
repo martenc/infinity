@@ -1,1 +1,2 @@
-Please track records for me
+
+<?php $this->load->view('timesheetform', $track); ?>
