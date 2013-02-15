@@ -24,7 +24,7 @@
 				<div class="inputbox">
 					<?php echo form_dropdown('project', $form['projects'], '', 'id="timesheet-project"'); ?>
 				</div>
-				<div class="desc">Project (optional)</div>
+				<div class="desc"><div>Project (optional)</div><div><?php print anchor('project/create', 'Create Project'); ?></div></div>
 			</div>
 		</div>
 
