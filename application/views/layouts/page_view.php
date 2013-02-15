@@ -29,21 +29,23 @@
 
   <div class="container-fluid">
 
-      <div class="row-fluid" id="header-region-container"></div>
+    <div class="row-fluid" id="header-region-container">
+      <?php $this->load->view('layouts/menu_view'); ?>
+    </div>
 
-      <div class="row-fluid" id="content-region-container">
-          <?php
-          if (isset($view['layout']) && !isset($view['data'])) {
-            $this->load->view($view['layout']);
-          } elseif (isset($view['layout']) && is_array($view['data'])) {
-            $this->load->view($view['layout'], $view['data']);
-          } else {
-            show_error('View file not defined. You cannot access a page without a view');
-          }
-          ?>
-      </div>
+    <div class="row-fluid" id="content-region-container">
+        <?php
+        if (isset($view['layout']) && !isset($view['data'])) {
+          $this->load->view($view['layout']);
+        } elseif (isset($view['layout']) && is_array($view['data'])) {
+          $this->load->view($view['layout'], $view['data']);
+        } else {
+          show_error('View file not defined. You cannot access a page without a view');
+        }
+        ?>
+    </div>
 
-      <div class="row-fluid" id="footer-region-container"></div>
+    <div class="row-fluid" id="footer-region-container"></div>
 
   </div>
 

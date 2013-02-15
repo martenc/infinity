@@ -26,7 +26,7 @@ if (!function_exists('auth_user'))
     $ci =& get_instance();
     $auth = $ci->session->userdata('auth');
     if (!$auth) {
-      redirect('user/login');
+      redirect('users/login');
     }
   }
 }

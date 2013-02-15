@@ -5,7 +5,7 @@ class Project_model extends CI_Model {
   // calling the constructor
   public function __construct() {
     parent::__construct();
-    $this->load->database();
+    //$this->load->database();
   }
 
   public function save($projectValues) {

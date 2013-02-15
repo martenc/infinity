@@ -2,6 +2,8 @@
 
 class User_model extends CI_Model {
 
+  private $table_name = 'users';
+
   public function __construct() {
     parent::__construct();
   }
@@ -19,10 +21,11 @@ class User_model extends CI_Model {
       $result = $query->result_array();
       $result = $result[0];
       $this->set_user($result);
+      $data = $this->session->all_userdata();
       return true;
     }
     else {
-      redirect('user/login');
+      redirect('users/login');
     }
   }
 

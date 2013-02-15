@@ -4,6 +4,7 @@ class Timesheet extends CI_Controller {
 
   public function __construct() {
     parent::__construct();
+    auth_user(); // this section is authentication based
   }
 
   // everyone will be redirected to timesheet track page.
