@@ -17,3 +17,16 @@ if (!function_exists('dd'))
     var_dump($var);die();
   }
 }
+
+// checking the user
+if (!function_exists('auth_user'))
+{
+  function auth_user() {
+    // getting the CI instance
+    $ci =& get_instance();
+    $auth = $ci->session->userdata('auth');
+    if (!$auth) {
+      redirect('user/login');
+    }
+  }
+}

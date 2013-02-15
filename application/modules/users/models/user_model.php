@@ -25,4 +25,16 @@ class User_model extends CI_Model {
       redirect('user/login');
     }
   }
+
+  // setting the session for the user
+  protected function set_user($data) {
+    $sesion_data = array(
+      'auth' => true,
+      'uid' => $data['uid'],
+      'email' => $data['email'],
+      'display_name' => $data['display_name']
+    );
+
+    $this->session->set_userdata($sesion_data);
+  }
 }
