@@ -2,8 +2,8 @@ $(document).ready(function() {
 
 	//save timesheed entry
 	$('#save-timesheet').click(function() {
-		var timesheetParams = ['timesheet-description', 'timesheet-duration', 'timesheet-started', 'timesheet-ended'];
-		var timesheetValues = [];
+		var timesheetParams = ['timesheet-description', 'timesheet-project', 'timesheet-duration', 'timesheet-started', 'timesheet-ended'];
+		var timesheetValues = {};
 		$.each( timesheetParams, function( key, value ) {
 			timesheetValues[value.replace('-', '_')] = $('.task-detail-wrapper #'+value).val();
 		});
@@ -15,16 +15,15 @@ $(document).ready(function() {
 });
 
 function save_timesheet(saveValues) {
-
 	$.ajax({
 		type: "POST",
 		url: base_url + 'timesheet/save',
 		data: saveValues
 	})
-	.done(function(htmldata) {
+	.done(function() {
 	});
 
-		console.log(saveValues);
+    console.log(saveValues);
 
 }
 

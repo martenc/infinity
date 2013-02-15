@@ -6,7 +6,7 @@
 
 	<div class="middle-row row-fluid">
 		<div class="span6 description-wrapper">
-			<?php echo form_input(array('name' => 'description','class' =>'span12', 'id'=>'timesheet-description', 'placeholder' => 'Enter project description')); ?>
+			<?php echo form_input(array('name' => 'description','class' =>'span12', 'id'=>'timesheet-description', 'placeholder' => 'Enter timesheet description')); ?>
 		</div>
 
 		<div class="span3 duration-wrapper">
@@ -22,7 +22,7 @@
 		<div class="span4">
 			<div class="project-wrapper">
 				<div class="inputbox">
-					<?php echo form_dropdown('project', $form['projects']); ?>
+					<?php echo form_dropdown('project', $form['projects'], '', 'id="timesheet-project"'); ?>
 				</div>
 				<div class="desc">Project (optional)</div>
 			</div>
