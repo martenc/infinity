@@ -52,7 +52,13 @@
   <script src="<?php echo base_url(); ?>js/vendor/bootstrap.min.js"></script>
   <script src="<?php echo base_url(); ?>js/vendor/plugins.js"></script>
   <script src="<?php echo base_url(); ?>js/vendor/plugins.js"></script>
-  <script src="<?php echo base_url(); ?>js/timesheet/timesheet.js"></script>
+
+  <!-- load js as per page -->
+  <?php if (isset($scripts)): ?>
+    <?php foreach($scripts as $key => $value): ?>
+      <script type="text/javascript" src="<?php print base_url() . 'js/' . $value; ?>"></script>
+    <?php endforeach; ?>
+  <?php endif; ?>
 
 </body>
 
