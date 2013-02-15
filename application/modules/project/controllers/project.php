@@ -14,22 +14,28 @@ class Project extends CI_Controller {
 
   // project list page
   public function view() {
-    $data['view']['layout'] = 'project';
+    $data['view']['layout'] = 'projectview';
     $data['view']['data']['project'] = '';
     $this->load->view('layouts/page_view', $data);
   }
 
 
   public function create() {
+    $data['scripts'][] = 'project/create.js';
     $data['view']['layout'] = 'createproject';
     $data['view']['data']['project'] = '';
     $this->load->view('layouts/page_view', $data);
   }
 
   public function save() {
-    $data['view']['layout'] = 'project';
-    $data['view']['data']['project'] = '';
-    $this->load->view('layouts/page_view', $data);
+    if ($_POST) {
+      // loading the model
+      $this->load->model('project_model');
+      $this->project_model->save($_POST);
+    }
+    else {
+      redirect('project/view');
+    }
   }
 
 }
