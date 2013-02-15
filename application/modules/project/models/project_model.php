@@ -12,6 +12,7 @@ class Project_model extends CI_Model {
     $data = array(
       'name' => $projectValues['project_name'],
       'client' => $projectValues['project_client'],
+      'uid' => '2',
     );
 
     return $this->db->insert('project', $data);
@@ -22,13 +23,14 @@ class Project_model extends CI_Model {
    * @return result array
    */
   public function get_project($projectParams = array()) {
+
     if ($projectParams) {
       $query = $this->db->get('project');
     }
     else {
       $query = $this->db->get_where('project', $projectParams);
     }
-
+    $projects = array();
     foreach ($query->result() as $row) {
       $projects[$row->pid] = $row;
     }
