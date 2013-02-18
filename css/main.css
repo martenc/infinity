@@ -18,13 +18,6 @@ textarea {
     color: #222;
 }
 
-body {
-    font-size: 1em;
-    line-height: 1.4;
-    padding-top: 60px;
-    padding-bottom: 40px;
-}
-
 /*
  * Remove text-shadow in selection highlight: h5bp.com/i
  * These selection declarations have to be separate.
@@ -94,7 +87,7 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-
+.content-inner-padding {padding-top: 50px;}
 
 
 

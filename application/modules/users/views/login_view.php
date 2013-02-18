@@ -12,11 +12,11 @@ $this->load->helper('form');
 
   <!-- Le styles -->
   <link href="<?php echo base_url(); ?>css/bootstrap.css" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>css/docs.css" rel="stylesheet">
   <style type="text/css">
     body {
-      padding-top: 40px;
-      padding-bottom: 40px;
-      background-color: #f5f5f5;
+      padding-top: 0px;
+      padding-bottom: 0px;
     }
 
     .form-signin {
@@ -49,6 +49,7 @@ $this->load->helper('form');
 
 <body>
 
+<div class="jumbotron">
 <div class="container">
 
   <?php echo form_open('users/dologin','class="form-signin"'); ?>
@@ -62,6 +63,7 @@ $this->load->helper('form');
   <?php echo form_close(); ?>
 
 </div> <!-- /container -->
+</div>
 
 </body>
 </html>

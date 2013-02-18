@@ -17,8 +17,10 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap-responsive.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/main.css">
-    <script type="text/javascript">var base_url = '<?php print base_url(); ?>';</script>
     <script src="<?php echo base_url(); ?>js/vendor/modernizr-2.6.2.min.js"></script>
+    <script type="text/javascript">
+      var base_url = '<?php print base_url(); ?>';
+    </script>
 </head>
 
 <body>
@@ -28,7 +30,7 @@
   <![endif]-->
 
   <div class="container-fluid">
-
+    
     <div class="row-fluid" id="header-region-container">
       <?php $this->load->view('layouts/menu_view'); ?>
     </div>
@@ -52,7 +54,6 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
   <script src="<?php echo base_url(); ?>js/vendor/bootstrap.min.js"></script>
-  <script src="<?php echo base_url(); ?>js/vendor/plugins.js"></script>
   <script src="<?php echo base_url(); ?>js/vendor/plugins.js"></script>
 
   <!-- load js as per page -->

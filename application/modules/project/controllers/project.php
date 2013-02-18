@@ -19,6 +19,10 @@ class Project extends CI_Controller {
 
   // project list page
   public function view() {
+    $data['scripts'][] = 'vendor/angular.min.js';
+    $data['scripts'][] = 'project/module.js';
+    $data['scripts'][] = 'project/app.js';
+    
     $data['view']['layout'] = 'projectview';
     $data['view']['data']['project'] = '';
     $this->load->view('layouts/page_view', $data);
