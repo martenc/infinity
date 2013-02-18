@@ -19,34 +19,34 @@
 	</div>
 
 	<div class="last-row row-fluid">
-		<div class="span4">
+		<div class="span3">
 			<div class="project-wrapper">
 				<div class="inputbox">
-          <select name="timesheet-project" ng-model="currProject" ng-options="p.pid as p.name for p in projects"></select>
+          			<select class="span12" name="timesheet-project" ng-model="currProject" ng-options="p.pid as p.name for p in projects"></select>
 				</div>
 				<div class="desc"><div>Project (optional)</div><div><p class="btn btn-link" ng-click="openProjectAddDialog()">create a project</p> </div></div>
 			</div>
 		</div>
 
-		<div class="span4">
+		<div class="span6">
 			<div class="time-container row-fluid">
-				<div class="span4">
+				<div class="span2">
 					<div class="inputbox"><?php echo form_input(array('name' => 'created', 'class' => 'span12', 'id'=>'timesheet-started')); ?></div>
 					<div class="desc">START</div>
 				</div>
-				<div class="span4">
+				<div class="span2">
 					<div class="inputbox"><?php echo form_input(array('name' => 'ended', 'class' => 'span12', 'id'=>'timesheet-ended')); ?></div>
 					<div class="desc">STOP</div>
 				</div>
-				<div class="span4">
-					<div class="inputbox"><input ng-model="date" "class"="span12", "id"="timesheet-date"></div>
+				<div class="span8">
+					<div class="inputbox"><input ng-model='date' 'class'='span12', 'id'='timesheet-date' ui-date></div>
 					<div class="desc">DATE</div>
 				</div>
 			</div>
 		</div>
 
 
-		<div class="span4">
+		<div class="span3">
 			<div class="timesheet-actions">
 			</div>
 		</div>
