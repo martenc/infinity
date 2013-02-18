@@ -32,6 +32,10 @@ class Project extends CI_Controller {
     $this->load->view('layouts/page_view', $data);
   }
 
+  public function createpopup() {
+    $this->load->view('createproject');
+  }
+
   public function save() {
     if ($_POST) {
       // loading the model

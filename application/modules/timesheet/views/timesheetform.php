@@ -39,7 +39,7 @@
 					<div class="desc">STOP</div>
 				</div>
 				<div class="span4">
-					<div class="inputbox"><?php echo form_input(array('name' => 'date', 'class' => 'span12', 'id' => 'timesheet-date')); ?></div>
+					<div class="inputbox"><input ng-model="date" "class"="span12", "id"="timesheet-date"></div>
 					<div class="desc">DATE</div>
 				</div>
 			</div>
