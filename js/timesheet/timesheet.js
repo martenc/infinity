@@ -1,4 +1,4 @@
-var timeSheetApp = angular.module('timeSheetApp', ['ui.bootstrap']);
+var timeSheetApp = angular.module('timeSheetApp', ['ui.bootstrap', 'ui']);
 
 timeSheetApp.factory('sharedProjects', ['$http', '$rootScope', function($http, $rootScope) {
   var projects = [];

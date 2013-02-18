@@ -17,6 +17,10 @@ class Timesheet extends CI_Controller {
 
     $data['scripts'][] = 'vendor/angular.min.js';
     $data['scripts'][] = 'vendor/ui-bootstrap-tpls-0.1.0.min.js';
+    $data['scripts'][] = 'vendor/angular-ui.js';
+    $data['scripts'][] = 'vendor/jquery-ui-1.10.0.custom.min.js';
+
+    $data['stylesheets'][] = 'jquery-ui-modified.css';
 
     $data['scripts'][] = 'timesheet/timesheet.js';
     $data['view']['layout'] = 'track';
