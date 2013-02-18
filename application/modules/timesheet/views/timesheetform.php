@@ -1,6 +1,6 @@
 <?php $this->load->helper('form'); ?>
 
-<div class="span9 task-detail-wrapper">
+<div class="span9 task-detail-wrapper"  ng-controller="TimeSheetCtrl">
 
 	<div class="top-row row-fluid task-label">You are tracking time for</div>
 
@@ -22,9 +22,9 @@
 		<div class="span4">
 			<div class="project-wrapper">
 				<div class="inputbox">
-					<?php echo form_dropdown('project', $form['projects'], '', 'id="timesheet-project"'); ?>
+          <select name="timesheet-project" ng-model="currProject" ng-options="p.pid as p.name for p in projects"></select>
 				</div>
-				<div class="desc"><div>Project (optional)</div><div><?php print anchor('project/create', 'Create Project'); ?></div></div>
+				<div class="desc"><div>Project (optional)</div><div><p class="btn btn-link" ng-click="openProjectAddDialog()">create a project</p> </div></div>
 			</div>
 		</div>
 

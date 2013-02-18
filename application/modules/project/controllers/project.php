@@ -11,6 +11,12 @@ class Project extends CI_Controller {
     redirect('project/view');
   }
 
+  public function getjson() {
+    $this->load->model('project_model');
+    $projects = $this->project_model->get_project();
+    print json_encode($projects);
+  }
+
   // project list page
   public function view() {
     $data['view']['layout'] = 'projectview';
@@ -30,7 +36,19 @@ class Project extends CI_Controller {
     if ($_POST) {
       // loading the model
       $this->load->model('project_model');
-      $this->project_model->save($_POST);
+      print json_encode($this->project_model->save($_POST));
+    }
+    else {
+      redirect('project/view');
+    }
+  }
+
+
+  public function savejson() {
+    if ($_POST) {
+      // loading the model
+      $this->load->model('project_model');
+      print json_encode($this->project_model->save($_POST));
     }
     else {
       redirect('project/view');

@@ -6,6 +6,7 @@ class Project_model extends CI_Model {
   public function __construct() {
     parent::__construct();
     //$this->load->database();
+
   }
 
   public function save($projectValues) {
@@ -15,7 +16,9 @@ class Project_model extends CI_Model {
       'uid' => '2',
     );
 
-    return $this->db->insert('project', $data);
+    $this->db->insert('project', $data);
+    $last_insert_id= $this->db->insert_id();
+    return $this->get_project();
   }
 
   /**
@@ -30,11 +33,7 @@ class Project_model extends CI_Model {
     else {
       $query = $this->db->get_where('project', $projectParams);
     }
-    $projects = array();
-    foreach ($query->result() as $row) {
-      $projects[$row->pid] = $row;
-    }
-    return $projects;
+    return $query->result();
   }
 
 }

@@ -14,8 +14,11 @@ class Timesheet extends CI_Controller {
 
   // timesheet track page
   public function track() {
-    $data['scripts'][] = 'timesheet/timesheet.js';
+
     $data['scripts'][] = 'vendor/angular.min.js';
+    $data['scripts'][] = 'vendor/ui-bootstrap-tpls-0.1.0.min.js';
+
+    $data['scripts'][] = 'timesheet/timesheet.js';
     $data['view']['layout'] = 'track';
     $this->load->model('project/project_model');
     $projects_values = $this->project_model->get_project();
