@@ -1,4 +1,4 @@
 infinity
 ========
 
-Demo application like Toggl using codegnitor and Backbone JS
+Demo application like Toggl using codegnitor and Angular JS
