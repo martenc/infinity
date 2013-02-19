@@ -1,18 +1,32 @@
 <div class="content-inner-padding" ng-app="projectView">
 	
-	<div class="span12"><h3>List of projects</h3></div>
-
-	<div ng-controller="projViewCtrl">
-		<table class="table table-bordered table-striped span3">
-			<tr>
-				<th class="span8">Project Name</th>
-				<th class="span4">Client</th>
-			</tr>
-			<tr ng-repeat="project in projects">
-				<th>{{ project.name }}</th>
-				<th>{{ project.client }}</th>
-			</tr>
-		</table>
+	<div class="row-fluid">
+    <div class="span12"><h3>List of projects</h3></div>
 	</div>
+
+	<div class="row-fluid">
+    <div class="span6">
+      <div ng-controller="projViewCtrl">
+        <table class="table table-bordered table-striped">
+          <tr>
+            <th>Project Name</th>
+            <th>Client</th>
+          </tr>
+          <tr ng-repeat="project in projects">
+            <th>{{ project.name }}</th>
+            <th>{{ project.client }}</th>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="span4 pull-right control-group {{ validation }}" ng-controller="projAddCtrl">
+      <label for="project">Project name:</label>
+        <input type="text" ng-model="projectname" name="project">
+      <label></label>
+        <button class="btn btn-primary" ng-click="saveProject(projectname)">Save Project</button>
+    </div>
+
+  </div>
 
 </div>
