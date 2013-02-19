@@ -1,0 +1,11 @@
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+.task-detail-wrapper {
+  background-color: #B2DA8E;
+}
+
+.timesheet-detail-wrapper {
+  background-color: #ffffff;
+}

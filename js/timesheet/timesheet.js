@@ -26,7 +26,39 @@ timeSheetApp.factory('sharedProjects', ['$http', '$rootScope', function($http, $
   };
 }]);
 
-timeSheetApp.controller('TimeSheetCtrl', function( sharedProjects,$scope, $dialog) {
+
+timeSheetApp.factory('timeSheetData', ['$http', '$rootScope', function($http, $rootScope) {
+  var timeSheetData = [];
+
+  return {
+    getTimesheets: function() {
+      return $http.get(base_url + 'timesheet/gettsjson').then(function (response) {
+        //console.log(response.data);
+        timeSheetData = response.data;
+        $rootScope.$broadcast('handleTimesheetBroadcast', timeSheetData);
+        return timeSheetData;
+      });
+    },
+    addTimeSheet: function($params) {
+      return $http({
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        url: base_url + 'timesheet/savejson',
+        method: "POST",
+        data: $params,
+      })
+        .success(function(addData) {
+          //timeSheetData.timesheets.push(addData.insert);
+          console.log(addData);
+          $rootScope.$broadcast('handleTimesheetBroadcast', timeSheetData);
+        });
+    }
+  };
+}]);
+
+
+
+timeSheetApp.controller('TimeSheetCtrl', function( sharedProjects,timeSheetData, $scope, $dialog) {
+  //project popup
   $scope.openProjectAddDialog = function(){
     $scope.opts = {
       templateUrl: base_url + 'project/createpopup',
@@ -36,13 +68,41 @@ timeSheetApp.controller('TimeSheetCtrl', function( sharedProjects,$scope, $dialo
     var d = $dialog.dialog($scope.opts).open();
   };
 
+  //get project lists
   sharedProjects.getProjects().then(function(projects) {
     $scope.projects = projects;
   });
 
+  //update project list if new added
   $scope.$on('handleProjectsBroadcast', function(event, projects) {
     $scope.projects = projects;
   });
+
+  //get all timesheets
+  timeSheetData.getTimesheets().then(function(timeSheetData) {
+    $scope.timeSheets = timeSheetData.timesheets;
+    var dates = [];
+    angular.forEach(timeSheetData.allDates, function(value, key){
+      dates.push({d:value.date});
+    });
+    console.log(timeSheetData);
+    $scope.dates = dates;
+    console.log(dates);
+  });
+
+  //update timesheets list if new added
+  $scope.$on('handleTimesheetBroadcast', function(event, timeSheetData) {
+    $scope.timeSheets = timeSheetData.timesheets;
+  });
+
+
+  //add timesheet todatabase and scope
+  $scope.addTimeSheet = function() {
+    $params = $.param({
+      "description" : $scope.timesheetDescription,
+    });
+    timeSheetData.addTimeSheet($params);
+  };
 
 });
 
@@ -67,7 +127,7 @@ function ProjectDialogController($scope, dialog, sharedProjects){
 
 
 
-
+/*
 $(document).ready(function() {
 
 	//save timesheed entry
@@ -102,3 +162,4 @@ function clear_form_inputs(clearParams) {
 	});
 
 }
+  */

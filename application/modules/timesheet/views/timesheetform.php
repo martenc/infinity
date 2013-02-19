@@ -1,20 +1,20 @@
 <?php $this->load->helper('form'); ?>
 
-<div class="span9 task-detail-wrapper"  ng-controller="TimeSheetCtrl">
-
+<div class="span12 well task-detail-wrapper" >
+  <form ng-submit="addTimeSheet()">
 	<div class="top-row row-fluid task-label">You are tracking time for</div>
 
 	<div class="middle-row row-fluid">
-		<div class="span6 description-wrapper">
-			<?php echo form_input(array('name' => 'description','class' =>'span12', 'id'=>'timesheet-description', 'placeholder' => 'Enter timesheet description')); ?>
+		<div class="span9 description-wrapper">
+      <input type="text" name="description" ng-model="timesheetDescription" class="span12" id="timesheet-description" placeholder="Enter timesheet description">
 		</div>
 
-		<div class="span3 duration-wrapper">
-			<?php echo form_input(array('name' => 'duration', 'id'=>'timesheet-duration')); ?>
+		<div class="span2 duration-wrapper">
+			<?php echo form_input(array('name' => 'duration', 'class' =>'span12','id'=>'timesheet-duration')); ?>
 		</div>
 
-		<div class="span3">
-			<?php echo form_button(array('name' => 'button',  'content' => 'Save', 'class' => 'btn', 'id' => 'save-timesheet')); ?>
+		<div class="span1">
+      <input class="btn-primary span12 btn" type="submit" value="Save" id='save-timesheet'>
 		</div>
 	</div>
 
@@ -24,7 +24,7 @@
 				<div class="inputbox">
           			<select class="span12" name="timesheet-project" ng-model="currProject" ng-options="p.pid as p.name for p in projects"></select>
 				</div>
-				<div class="desc"><div>Project (optional)</div><div><p class="btn btn-link" ng-click="openProjectAddDialog()">create a project</p> </div></div>
+				<div class="desc clearfix"><div>Project (optional)</div><div><p class="btn btn-link" ng-click="openProjectAddDialog()">create a project</p> </div></div>
 			</div>
 		</div>
 
@@ -39,7 +39,7 @@
 					<div class="desc">STOP</div>
 				</div>
 				<div class="span8">
-					<div class="inputbox"><input ng-model='date' 'class'='span12', 'id'='timesheet-date' ui-date></div>
+					<div class="inputbox"><input ng-model='date' class='span12', id='timesheet-date' ui-date="{formatDate: 'dd-mm-yy'}"></div>
 					<div class="desc">DATE</div>
 				</div>
 			</div>
@@ -52,5 +52,5 @@
 		</div>
 
 	</div>
-		
+  </form>
 </div>
