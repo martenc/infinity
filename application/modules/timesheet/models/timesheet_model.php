@@ -23,7 +23,7 @@ class Timesheet_model extends CI_Model {
 
     $query = $this->db->get_where('timesheet', array('tid' => $tid))->result();
     $query[0]->date = date('d-m-Y',$date);
-    $result['insert'][$query[0]->tid] = $query[0];
+    $result['insert'] = $query[0];
     return $result;
 	}
 

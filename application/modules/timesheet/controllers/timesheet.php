@@ -69,23 +69,18 @@ class Timesheet extends CI_Controller {
       $timesheets = $this->timesheet_model->gettsdata();
     }
     $dates = array();
-    $tt = array();
     //this will return dates for group by
     foreach ($timesheets as $key => $value) {
       //convert the date in desired format
       $valueDate = date('d-m-Y', $value->created);
       //check if date exists or not
       if (!in_array($valueDate, $dates)) {
-        $dates[$valueDate]['date'] = $valueDate;
+        $dates[$valueDate]['date'] = $value->created;
       }
-      //$timesheets[$key]->date = $valueDate;
-      $tt[$value->tid] = $value;
-      $tt[$value->tid]->date = $valueDate;
-
+      $timesheets[$key]->date = $valueDate;
     }
 
-
-    print json_encode(array('allDates' => $dates, 'timesheets' => $tt));
+    print json_encode(array('allDates' => $dates, 'timesheets' => $timesheets));
   }
 
   

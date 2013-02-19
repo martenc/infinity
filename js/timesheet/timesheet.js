@@ -47,8 +47,8 @@ timeSheetApp.factory('timeSheetData', ['$http', '$rootScope', function($http, $r
         data: $params,
       })
         .success(function(addData) {
-          //timeSheetData.timesheets.push(addData.insert);
-          console.log(addData);
+          timeSheetData.timesheets.push(addData.insert);
+          //console.log(addData);
           $rootScope.$broadcast('handleTimesheetBroadcast', timeSheetData);
         });
     }
@@ -83,11 +83,12 @@ timeSheetApp.controller('TimeSheetCtrl', function( sharedProjects,timeSheetData,
     $scope.timeSheets = timeSheetData.timesheets;
     var dates = [];
     angular.forEach(timeSheetData.allDates, function(value, key){
-      dates.push({d:value.date});
+      
+      dates.push({d:key, c:value});
     });
-    console.log(timeSheetData);
+    //console.log($scope.timeSheets);
     $scope.dates = dates;
-    console.log(dates);
+    //console.log(dates);
   });
 
   //update timesheets list if new added
