@@ -6,7 +6,7 @@
 
 	<div class="middle-row row-fluid">
 		<div class="span9 description-wrapper">
-      <input type="text" name="description" ng-model="timesheetDescription" class="span12" id="timesheet-description" placeholder="Enter timesheet description">
+      <input type="text" name="description" ng-model="timesheetDescription" class="span12" id="timesheet-description" placeholder="Enter timesheet description" required>
 		</div>
 
 		<div class="span2 duration-wrapper">
@@ -22,7 +22,7 @@
 		<div class="span3">
 			<div class="project-wrapper">
 				<div class="inputbox">
-          			<select class="span12" name="timesheet-project" ng-model="currProject" ng-options="p.pid as p.name for p in projects"></select>
+          			<select class="span12" name="timesheet-project" ng-model="timesheetProject" ng-options="p.pid as p.name for p in projects"></select>
 				</div>
 				<div class="desc clearfix"><div>Project (optional)</div><div><p class="btn btn-link" ng-click="openProjectAddDialog()">create a project</p> </div></div>
 			</div>

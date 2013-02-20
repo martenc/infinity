@@ -46,11 +46,10 @@ timeSheetApp.factory('timeSheetData', ['$http', '$rootScope', function($http, $r
         method: "POST",
         data: $params,
       })
-        .success(function(addData) {
+      .success(function(addData) {
           timeSheetData.timesheets.push(addData.insert);
-          //console.log(addData);
           $rootScope.$broadcast('handleTimesheetBroadcast', timeSheetData);
-        });
+      });
     }
   };
 }]);
@@ -83,12 +82,10 @@ timeSheetApp.controller('TimeSheetCtrl', function( sharedProjects,timeSheetData,
     $scope.timeSheets = timeSheetData.timesheets;
     var dates = [];
     angular.forEach(timeSheetData.allDates, function(value, key){
-      
-      dates.push({d:key, c:value});
+      dates.push({d:value.date, f:value.flag});
     });
-    //console.log($scope.timeSheets);
     $scope.dates = dates;
-    //console.log(dates);
+
   });
 
   //update timesheets list if new added
@@ -101,10 +98,22 @@ timeSheetApp.controller('TimeSheetCtrl', function( sharedProjects,timeSheetData,
   $scope.addTimeSheet = function() {
     $params = $.param({
       "description" : $scope.timesheetDescription,
+      "pid" : $scope.timesheetProject,
     });
+
+    //change ng-show if its false e.g. first entry for today
+    angular.forEach($scope.dates, function(value, key) {
+      if ('20-02-2013' == value.d) {
+        if(!value.f) $scope.dates[key].f = 1;
+      }
+    });
+
+    //clear timesheet form
+    clearTimesheetForm($scope);
+
+    //add timesheet to database and update scope
     timeSheetData.addTimeSheet($params);
   };
-
 });
 
 
@@ -124,8 +133,14 @@ function ProjectDialogController($scope, dialog, sharedProjects){
   };
 }
 
-
-
+/**
+ *  clear timesheet form elements.
+ * @param $scope
+ */
+function clearTimesheetForm($scope) {
+  $scope.timesheetDescription = '';
+  $scope.timesheetProject = "{pid:'not in list'}";
+}
 
 
 /*

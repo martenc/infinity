@@ -59,23 +59,30 @@ class Timesheet extends CI_Controller {
   }
 
 
-  public function gettsjson($uid = null) {
+  public function gettsjson() {
     $this->load->model('timesheet_model');
-    if ($uid) {
-      $tsParams = array('uid' => $uid);
-      $timesheets = $this->timesheet_model->gettsdata($tsParams);
-    }
-    else {
-      $timesheets = $this->timesheet_model->gettsdata();
-    }
-    $dates = array();
+    $uid = $this->session->userdata('uid');
+    $tsParams['uid'] = $uid;
+    $tsParams['created >='] = strtotime('-7 days');
+    $timesheets = $this->timesheet_model->gettsdata($tsParams);
+
     //this will return dates for group by
+    $dates = array();
+    for ($i = 0; $i < 7; $i++) {
+      $tempDate = date('d-m-Y', strtotime('-' . $i . ' days'));
+      $dates[$tempDate]->date = $tempDate;
+      //to check if date has data used in ng-show
+      $dates[$tempDate]->flag = 0;
+    }
+
+
     foreach ($timesheets as $key => $value) {
       //convert the date in desired format
       $valueDate = date('d-m-Y', $value->created);
       //check if date exists or not
-      if (!in_array($valueDate, $dates)) {
-        $dates[$valueDate]['date'] = $value->created;
+      if (array_key_exists($valueDate, $dates)) {
+        //to check if date has data used in ng-show
+        $dates[$valueDate]->flag = 1;
       }
       $timesheets[$key]->date = $valueDate;
     }
