@@ -1,6 +1,6 @@
-var projectView = angular.module('projectView', []);
+var projectModel = angular.module('projectModel', []);
 
-projectView.factory('sharedProjects', ['$http', '$rootScope', function($http, $rootScope) {
+projectModel.factory('sharedProjects', ['$http', '$rootScope', function($http, $rootScope) {
 	var projects = []; // init
 
 	return {

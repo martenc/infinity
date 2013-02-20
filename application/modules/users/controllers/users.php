@@ -37,7 +37,7 @@ class Users extends CI_Controller {
       $auth = $this->user->validate_login($username, $password);
 
       if ($auth) {
-        redirect('users/profile');
+        redirect('timesheet');
       } else {
         redirect('users/login');
       }

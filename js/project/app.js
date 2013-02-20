@@ -1,4 +1,4 @@
-projectView.controller('projViewCtrl', function($scope, sharedProjects) {
+projectModel.controller('projViewCtrl', function($scope, sharedProjects) {
 	$scope.name = 'project view controller';
 	
 	sharedProjects.getProjects().then(function(projects) {
@@ -12,7 +12,7 @@ projectView.controller('projViewCtrl', function($scope, sharedProjects) {
   
 });
 
-projectView.controller('projAddCtrl', function($scope, sharedProjects) {
+projectModel.controller('projAddCtrl', function($scope, sharedProjects) {
   $scope.validation = "";
   $scope.saveProject = function(projectName) {
     if (projectName) {
@@ -21,9 +21,8 @@ projectView.controller('projAddCtrl', function($scope, sharedProjects) {
         "project_name" : projectName,
         "project_client" : 1
       });
-      sharedProjects.addProjects($params).then(function() {
-        console.log('Project added');
-      });
+      sharedProjects.addProjects($params);
+      $scope.projectname = "";
     } else {
       $scope.validation = 'error';
     }
