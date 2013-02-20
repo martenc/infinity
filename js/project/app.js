@@ -12,19 +12,29 @@ projectModel.controller('projViewCtrl', function($scope, sharedProjects) {
   
 });
 
-projectModel.controller('projAddCtrl', function($scope, sharedProjects) {
+projectModel.controller('projAddCtrl', function($scope, sharedProjects, sharedClients) {
   $scope.validation = "";
-  $scope.saveProject = function(projectName) {
-    if (projectName) {
+
+  // get client list
+  $scope.clientlist = sharedClients.getClients();
+
+  // save project along with client id
+  $scope.saveProject = function(projectName, clientselected) {
+    if (projectName && clientselected && clientselected !=0) {
       $scope.validation = "success";
       $params = $.param({
         "project_name" : projectName,
-        "project_client" : 1
+        "project_client" : clientselected
       });
       sharedProjects.addProjects($params);
       $scope.projectname = "";
+      $scope.clientselected = 0;
     } else {
       $scope.validation = 'error';
     }
+  }
+
+  $scope.selectClient = function(cid) {
+    console.log(cid);
   }
 });

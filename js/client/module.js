@@ -1,26 +1,25 @@
-var clientModule = angular.module('clientModule', []);
-
-clientModule.factory('sharedClients', ['$http', '$rootScope', function($http, $rootScope) {
-  var projects = []; // init
+// adding the shared client list
+projectModel.factory('sharedClients', ['$http', '$rootScope', function($http, $rootScope) {
+  var clients = []; // init
 
   return {
-    getProjects: function() {
-      return $http.get(base_url + 'client/getjson').then(function (response) {
-        projects = response.data;
-        $rootScope.$broadcast('handleProjectsBroadcast', projects);
-        return projects;
+    getClients: function() {
+      return $http.get(base_url + 'clients/getjson').then(function (response) {
+        clients = response.data;
+        $rootScope.$broadcast('handleClientBroadcast', clients);
+        return clients;
       });
     },
-    addProjects: function($params) {
+    addClients: function($params) {
       return $http({
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        url: base_url + 'client/savejson',
+        url: base_url + 'clients/savejson',
         method: "POST",
         data: $params,
       })
         .success(function(addData) {
-          projects = addData;
-          $rootScope.$broadcast('handleProjectsBroadcast', projects);
+          clients = addData;
+          $rootScope.$broadcast('handleClientBroadcast', clients);
         });
     }
   };

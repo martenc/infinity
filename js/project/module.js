@@ -1,5 +1,7 @@
+// define the project model
 var projectModel = angular.module('projectModel', []);
 
+// adding the factory for shared projects
 projectModel.factory('sharedProjects', ['$http', '$rootScope', function($http, $rootScope) {
 	var projects = []; // init
 

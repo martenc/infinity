@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "users/index";
+$route['default_controller'] = "timesheet";
 $route['404_override'] = '';
 
 

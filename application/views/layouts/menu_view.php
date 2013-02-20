@@ -10,7 +10,7 @@
       <div class="nav-collapse collapse">
         <p class="navbar-text pull-right"><?php echo anchor('users/logout', 'Logout'); ?></p>
         <ul class="nav">
-          <li><?php echo anchor('users/profile', 'Dashboard'); ?></li>
+          <li><?php echo anchor('timesheet', 'Dashboard'); ?></li>
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Projects<b class="caret"></b></a>
             <ul class="dropdown-menu">

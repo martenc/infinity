@@ -4,6 +4,7 @@ class Project extends CI_Controller {
 
   public function __construct() {
     parent::__construct();
+    auth_user();
   }
 
   // everyone will be redirected to project list view.
@@ -21,13 +22,13 @@ class Project extends CI_Controller {
   public function view() {
     $data['scripts'][] = 'vendor/angular.min.js';
     $data['scripts'][] = 'project/module.js';
+    $data['scripts'][] = 'client/module.js';
     $data['scripts'][] = 'project/app.js';
     
     $data['view']['layout'] = 'projectview';
     $data['view']['data']['project'] = '';
     $this->load->view('layouts/page_view', $data);
   }
-
 
   public function create() {
     $data['scripts'][] = 'project/create.js';
