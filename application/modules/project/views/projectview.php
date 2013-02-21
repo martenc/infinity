@@ -27,12 +27,10 @@
       <select name="client" id="client" ng-model="clientselected">
         <option value="0">SELECT CLIENT</option>
         <option value="{{client.cid}}"
-                ng-selected="clientselected"
-                ng-repeat="client in clientlist">{{client.name}}</option>
+            ng-repeat="client in clientlist">{{client.name}}</option>
       </select>
       <label></label>
       <button class="btn btn-primary" ng-click="saveProject(projectname, clientselected)">Save Project</button>
-      <p>{{clientselected}} | {{client.name}}</p>
     </div>
 
   </div>
