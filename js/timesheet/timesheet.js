@@ -93,17 +93,14 @@ timeSheetApp.controller('TimeSheetCtrl', function( sharedProjects,timeSheetData,
   $scope.$on('handleTimesheetBroadcast', function(event, timeSheetData) {
     $scope.timeSheets = timeSheetData.timesheets;
   });
+
+  //update the current date on load
+  $scope.timesheetDate = new Date();
+
   //add timesheet todatabase and scope
   $scope.addTimeSheet = function() {
-
     //format date as per requirement
-    if ($scope.timesheetDate){
-      var timesheetSelectedDate = $scope.timesheetDate;
-    }
-    else {
-      var timesheetSelectedDate = new Date();
-    }
-    timeSheetDateFormatted = $.datepicker.formatDate('dd-mm-yy', timesheetSelectedDate);
+    timeSheetDateFormatted = $.datepicker.formatDate('dd-mm-yy', $scope.timesheetDate);
 
     $params = $.param({
       "description" : $scope.timesheetDescription,
@@ -152,8 +149,9 @@ function ProjectDialogController($scope, dialog, sharedProjects){
 function clearTimesheetForm($scope) {
   $scope.timesheetDescription = '';
   $scope.timesheetProject = "{pid:'not in list'}";
+
   if ($scope.timesheetDate) {
-    $.datepicker._clearDate('#timesheet-date');
+    $scope.timesheetDate = new Date();
   }
 
 }
