@@ -88,22 +88,33 @@ timeSheetApp.controller('TimeSheetCtrl', function( sharedProjects,timeSheetData,
 
   });
 
+
   //update timesheets list if new added
   $scope.$on('handleTimesheetBroadcast', function(event, timeSheetData) {
     $scope.timeSheets = timeSheetData.timesheets;
   });
-
-
   //add timesheet todatabase and scope
   $scope.addTimeSheet = function() {
+
+    //format date as per requirement
+    if ($scope.timesheetDate){
+      var timesheetSelectedDate = $scope.timesheetDate;
+    }
+    else {
+      var timesheetSelectedDate = new Date();
+    }
+    timeSheetDateFormatted = $.datepicker.formatDate('dd-mm-yy', timesheetSelectedDate);
+
     $params = $.param({
       "description" : $scope.timesheetDescription,
       "pid" : $scope.timesheetProject,
+      "createddate" : timeSheetDateFormatted,
     });
+
 
     //change ng-show if its false e.g. first entry for today
     angular.forEach($scope.dates, function(value, key) {
-      if ('20-02-2013' == value.d) {
+      if (timeSheetDateFormatted == value.d) {
         if(!value.f) $scope.dates[key].f = 1;
       }
     });
@@ -119,6 +130,7 @@ timeSheetApp.controller('TimeSheetCtrl', function( sharedProjects,timeSheetData,
 
 // the dialog is injected in the specified controller
 function ProjectDialogController($scope, dialog, sharedProjects){
+
   $scope.addProject = function() {
     $params = $.param({
       "project_name" : $scope.projectName,
@@ -140,6 +152,10 @@ function ProjectDialogController($scope, dialog, sharedProjects){
 function clearTimesheetForm($scope) {
   $scope.timesheetDescription = '';
   $scope.timesheetProject = "{pid:'not in list'}";
+  if ($scope.timesheetDate) {
+    $.datepicker._clearDate('#timesheet-date');
+  }
+
 }
 
 

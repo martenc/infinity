@@ -4,7 +4,7 @@
     <h1>{{idate.d}}</h1>
     <div ng-repeat="timeSheet in timeSheets | filter:{date: idate.d} ">
       <div>{{timeSheet.description }}</div>
-      
+
     </div>
   </div>
 </div>

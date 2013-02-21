@@ -8,7 +8,9 @@ class Timesheet_model extends CI_Model {
 	}
 
 	public function savedata($timesheetValues) {
-    $date = strtotime('now');
+    //TODO add time also
+    $dateFormat = $timesheetValues['createddate'];
+    $date = strtotime($dateFormat);
 
     $data = array(
       'pid' => $timesheetValues['pid'],

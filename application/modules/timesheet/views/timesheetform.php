@@ -39,7 +39,7 @@
 					<div class="desc">STOP</div>
 				</div>
 				<div class="span8">
-					<div class="inputbox"><input ng-model='date' class='span12', id='timesheet-date' ui-date="{formatDate: 'dd-mm-yy'}"></div>
+					<div class="inputbox"><input ng-model='timesheetDate' class='span12', id='timesheet-date' ui-date="{formatDate: 'dd-mm-yy' }"></div>
 					<div class="desc">DATE</div>
 				</div>
 			</div>
