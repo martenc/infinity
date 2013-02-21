@@ -22,7 +22,9 @@
 		<div class="span3">
 			<div class="project-wrapper">
 				<div class="inputbox">
-          			<select class="span12" name="timesheet-project" ng-model="timesheetProject" ng-options="p.pid as p.name for p in projects"></select>
+          <select class="span12" name="timesheet-project" ng-model="timesheetProject" ng-options="p.pid as p.name for p in projects">
+            <option value="">-- chose project --</option>
+          </select>
 				</div>
 				<div class="desc clearfix"><div>Project (optional)</div><div><p class="btn btn-link" ng-click="openProjectAddDialog()">create a project</p> </div></div>
 			</div>
@@ -39,7 +41,7 @@
 					<div class="desc">STOP</div>
 				</div>
 				<div class="span8">
-					<div class="inputbox"><input ng-model='date' class='span12', id='timesheet-date' ui-date="{formatDate: 'dd-mm-yy'}"></div>
+					<div class="inputbox"><input ng-model='timesheetDate' class='span12', id='timesheet-date' ui-date="{formatDate: 'dd-mm-yy' }"></div>
 					<div class="desc">DATE</div>
 				</div>
 			</div>
