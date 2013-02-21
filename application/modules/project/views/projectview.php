@@ -13,8 +13,8 @@
             <td><strong>Client</strong></td>
           </tr>
           <tr ng-repeat="project in projects">
-            <td>{{ project.name }}</td>
-            <td>{{ project.client }}</td>
+            <td>{{ project.projectname }}</td>
+            <td>{{ project.clientname }}</td>
           </tr>
         </table>
       </div>

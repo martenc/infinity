@@ -24,13 +24,13 @@ class Project_model extends CI_Model {
    * @return result array
    */
   public function get_project($projectParams = array()) {
+    $this->db
+      ->select('*, c.name as clientname, p.name as projectname')
+      ->from('project p');
 
-    if ($projectParams) {
-      $query = $this->db->get('project');
-    }
-    else {
-      $query = $this->db->get_where('project', $projectParams);
-    }
+    $this->db->join('clients c', 'c.cid=p.client');
+    $query = $this->db->get();
+
     return $query->result();
   }
 

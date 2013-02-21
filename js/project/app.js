@@ -3,7 +3,7 @@ projectModel.controller('projViewCtrl', function($scope, sharedProjects) {
 	
 	sharedProjects.getProjects().then(function(projects) {
     $scope.projects = projects;
-    //console.log($scope.projects);
+    console.log($scope.projects);
   });
 
   $scope.$on('handleProjectsBroadcast', function(event, projects) {
