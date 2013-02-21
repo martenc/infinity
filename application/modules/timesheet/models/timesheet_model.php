@@ -8,16 +8,18 @@ class Timesheet_model extends CI_Model {
 	}
 
 	public function savedata($timesheetValues) {
-    //TODO add time also
-    $dateFormat = $timesheetValues['createddate'];
-    $date = strtotime($dateFormat);
+    $startDateFormat = $timesheetValues['createddate'] . ' ' . $timesheetValues['createdTime'];
+    $startDate = strtotime($startDateFormat);
+		
+		$endDateFormat = $timesheetValues['createddate'] . ' ' . $timesheetValues['endedTime'];
+    $endDate = strtotime($endDateFormat);
 
     $data = array(
       'pid' => $timesheetValues['pid'],
       'uid' => $this->session->userdata('uid'),
       'description' => $timesheetValues['description'],
-      'created' => $date,
-      'ended' => $date,
+      'created' => startDate,
+      'ended' => $endDate,
       'total' => 20,
     );
     $this->db->insert('timesheet', $data);
@@ -25,7 +27,7 @@ class Timesheet_model extends CI_Model {
     $params = array('tid' => $tid);
 
     $query = $this->gettsdata($params);
-    $query[0]->date = date('d-m-Y',$date);
+    $query[0]->date = date('d-m-Y', $startDate);
     $result['insert'] = $query[0];
     return $result;
 	}

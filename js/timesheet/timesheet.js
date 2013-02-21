@@ -106,6 +106,8 @@ timeSheetApp.controller('TimeSheetCtrl', function( sharedProjects,timeSheetData,
       "description" : $scope.timesheetDescription,
       "pid" : $scope.timesheetProject,
       "createddate" : timeSheetDateFormatted,
+      "createdTime" : $scope.timepicker.startTime,
+      "endedTime" : $scope.timepicker.endTime,
     });
 
 
@@ -153,6 +155,7 @@ function clearTimesheetForm($scope) {
   if ($scope.timesheetDate) {
     $scope.timesheetDate = new Date();
   }
+
 
 }
 
