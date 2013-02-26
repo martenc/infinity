@@ -14,7 +14,7 @@
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Projects<b class="caret"></b></a>
             <ul class="dropdown-menu">
-              <li><?php echo anchor('project/view', 'View Projects'); ?></li>
+              <li><?php echo anchor('project/view#view', 'View Projects'); ?></li>
               <li><?php echo anchor('project/create', 'Add Projects'); ?></li>
             </ul>
           </li>

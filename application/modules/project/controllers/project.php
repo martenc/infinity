@@ -52,7 +52,6 @@ class Project extends CI_Controller {
     }
   }
 
-
   public function savejson() {
     if ($_POST) {
       // loading the model
@@ -62,6 +61,17 @@ class Project extends CI_Controller {
     else {
       redirect('project/view');
     }
+  }
+
+  // this is the view file for the listing of views
+  public function viewlist() {
+    $this->load->view('project/project_list_partial');
+  }
+
+  // this is the view file for the edit part of project
+  public function editproject() {
+    $this->load->view('project/project_list_partial');
+    print 123;
   }
 
 }

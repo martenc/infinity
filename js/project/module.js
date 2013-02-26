@@ -1,5 +1,11 @@
 // define the project model
 var projectModel = angular.module('projectModel', []);
+// adding the routes
+projectModel.config(['$routeProvider', function($routeProvider) {
+  $routeProvider
+    .when('/view', {templateUrl: base_url + 'project/viewlist', controller: projectModel.projViewCtrl})
+    .when('/edit:id', {templateUrl: base_url + 'project/editproject', controller: projectModel.projViewCtrl})
+}]);
 
 // adding the factory for shared projects
 projectModel.factory('sharedProjects', ['$http', '$rootScope', function($http, $rootScope) {

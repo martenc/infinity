@@ -1,10 +1,10 @@
-projectModel.controller('projViewCtrl', function($scope, sharedProjects) {
+projectModel.controller('projViewCtrl', function($scope, sharedProjects, $routeParams) {
 	$scope.name = 'project view controller';
+	$scope.projectIdArg = $routeParams.id;
 	
 	sharedProjects.getProjects().then(function(projects) {
-    $scope.projects = projects;
-    console.log($scope.projects);
-  });
+		$scope.projects = projects;
+	});
 
   $scope.$on('handleProjectsBroadcast', function(event, projects) {
     $scope.projects = projects;

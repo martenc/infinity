@@ -7,16 +7,7 @@
 	<div class="row-fluid">
     <div class="span6">
       <div ng-controller="projViewCtrl">
-        <table class="table table-bordered table-striped">
-          <tr class="info">
-            <td><strong>Project Name</strong></td>
-            <td><strong>Client</strong></td>
-          </tr>
-          <tr ng-repeat="project in projects">
-            <td>{{ project.projectname }}</td>
-            <td>{{ project.clientname }}</td>
-          </tr>
-        </table>
+        <div ng-view></div>
       </div>
     </div>
 
