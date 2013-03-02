@@ -22,7 +22,7 @@
 		<div class="span3">
 			<div class="project-wrapper">
 				<div class="inputbox">
-          <select class="span12" name="timesheet-project" ng-model="timesheetProject" ng-options="p.pid as p.name for p in projects">
+          <select class="span12" name="timesheet-project" ng-model="timesheetProject" ng-options="p.pid as p.projectname for p in projects">
             <option value="">-- chose project --</option>
           </select>
 				</div>
