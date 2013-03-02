@@ -102,12 +102,13 @@ timeSheetApp.controller('TimeSheetCtrl', function( sharedProjects,timeSheetData,
     //format date as per requirement
     timeSheetDateFormatted = $.datepicker.formatDate('dd-mm-yy', $scope.timesheetDate);
 
+    console.log($scope);
     $params = $.param({
       "description" : $scope.timesheetDescription,
       "pid" : $scope.timesheetProject,
       "createddate" : timeSheetDateFormatted,
-      "createdTime" : $scope.timepicker.startTime,
-      "endedTime" : $scope.timepicker.endTime,
+      "createdTime" : '1257440964',
+      "endedTime" : '1257440974',
     });
 
 

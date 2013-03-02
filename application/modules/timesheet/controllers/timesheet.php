@@ -21,13 +21,13 @@ class Timesheet extends CI_Controller {
     $data['scripts'][] = 'vendor/jquery-ui-1.10.0.custom.min.js';
 
     $data['stylesheets'][] = 'jquery-ui-modified.css';
-    $data['stylesheets'][] = 'bootstrap-timepicker.css';
+    //$data['stylesheets'][] = 'bootstrap-timepicker.css';
 
 
     $data['scripts'][] = 'timesheet/timesheet.js';
 
     $data['scripts'][] = 'vendor/bootstrap-timepicker.js';
-    $data['scripts'][] = 'timesheet/timepicker.js';
+    //$data['scripts'][] = 'timesheet/timepicker.js';
 
     $data['view']['layout'] = 'track';
     $this->load->model('project/project_model');

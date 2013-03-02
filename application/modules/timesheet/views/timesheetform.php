@@ -33,11 +33,11 @@
 		<div class="span6">
 			<div class="time-container row-fluid">
 				<div class="span2">
-					<div class="inputbox"><input type="text" name="created" value="" class="span12" id="timesheet-started" ng-model="timepicker.startTime" ts-timepicker></div>
+					<div class="inputbox"><input type="text" name="created" value="" class="span12" id="timesheet-started" ng-model="startTime"></div>
 					<div class="desc">START</div>
 				</div>
 				<div class="span2">
-					<div class="inputbox"><input type="text" name="ended" value="" class="span12" id="timesheet-ended" ng-model="timepicker.endTime" ts-timepicker></div>
+					<div class="inputbox"><input type="text" name="ended" value="" class="span12" id="timesheet-ended" ng-model="endTime"></div>
 					<div class="desc">STOP</div>
 				</div>
 				<div class="span8">
