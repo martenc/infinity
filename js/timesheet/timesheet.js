@@ -94,8 +94,13 @@ timeSheetApp.controller('TimeSheetCtrl', function( sharedProjects,timeSheetData,
     $scope.timeSheets = timeSheetData.timesheets;
   });
 
+  var current_date = new Date();
   //update the current date on load
-  $scope.timesheetDate = new Date();
+  $scope.timesheetDate = current_date;
+  var converted_current_time = _conver_time_format(current_date);
+
+  $scope.startTime = converted_current_time['hour'] +':'+ converted_current_time['minutes']+' ' + converted_current_time['meridian'];
+  $scope.endTime = converted_current_time['hour'] +':'+ converted_current_time['minutes']+' ' + converted_current_time['meridian'];
 
   //add timesheet todatabase and scope
   $scope.addTimeSheet = function() {
@@ -107,8 +112,8 @@ timeSheetApp.controller('TimeSheetCtrl', function( sharedProjects,timeSheetData,
       "description" : $scope.timesheetDescription,
       "pid" : $scope.timesheetProject,
       "createddate" : timeSheetDateFormatted,
-      "createdTime" : '1257440964',
-      "endedTime" : '1257440974',
+      "createdTime" : $scope.startTime,
+      "endedTime" : $scope.endTime,
     });
 
 
@@ -152,14 +157,31 @@ function ProjectDialogController($scope, dialog, sharedProjects){
 function clearTimesheetForm($scope) {
   $scope.timesheetDescription = '';
   $scope.timesheetProject = "{pid:'not in list'}";
+  var current_date = new Date();
+  $scope.timesheetDate =current_date;
+  var converted_current_time = _conver_time_format(current_date);
 
-  if ($scope.timesheetDate) {
-    $scope.timesheetDate = new Date();
-  }
-
+  $scope.startTime = converted_current_time['hour'] +':'+ converted_current_time['minutes']+' ' + converted_current_time['meridian'];
+  $scope.endTime = converted_current_time['hour'] +':'+ converted_current_time['minutes']+' ' + converted_current_time['meridian'];
 
 }
 
+function _conver_time_format(date) {
+    var meridian = 'AM';
+    var hour = date.getHours();
+    var minutes = date.getMinutes();
+
+    if (hour > 12) {
+        hour = hour - 12;
+        var meridian = 'PM';
+    }
+    var converted = [];
+    // add a zero in front of numbers<10
+    converted['hour'] = hour < 10 ? '0' + hour : hour;
+    converted['minutes'] = minutes < 10 ? '0' + minutes : minutes;
+    converted['meridian'] = meridian;
+    return converted;
+}
 
 /*
 $(document).ready(function() {

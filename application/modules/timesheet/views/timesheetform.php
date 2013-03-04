@@ -22,7 +22,7 @@
 		<div class="span3">
 			<div class="project-wrapper">
 				<div class="inputbox">
-          <select class="span12" name="timesheet-project" ng-model="timesheetProject" ng-options="p.pid as p.projectname for p in projects">
+          <select class="span12" name="timesheet-project" ng-model="timesheetProject" ng-options="p.pid as p.projectname for p in projects" required>
             <option value="">-- chose project --</option>
           </select>
 				</div>
@@ -33,15 +33,15 @@
 		<div class="span6">
 			<div class="time-container row-fluid">
 				<div class="span2">
-					<div class="inputbox"><input type="text" name="created" value="" class="span12" id="timesheet-started" ng-model="startTime"></div>
+					<div class="inputbox"><input type="text" name="created" value="" class="span12" id="timesheet-started" ng-model="startTime" required></div>
 					<div class="desc">START</div>
 				</div>
 				<div class="span2">
-					<div class="inputbox"><input type="text" name="ended" value="" class="span12" id="timesheet-ended" ng-model="endTime"></div>
+					<div class="inputbox"><input type="text" name="ended" value="" class="span12" id="timesheet-ended" ng-model="endTime" required></div>
 					<div class="desc">STOP</div>
 				</div>
 				<div class="span8">
-					<div class="inputbox"><input ng-model='timesheetDate' class='span12', id='timesheet-date' ui-date="{formatDate: 'dd-mm-yy' }"></div>
+					<div class="inputbox"><input ng-model='timesheetDate' class='span12', id='timesheet-date' ui-date="{formatDate: 'dd-mm-yy' }" required></div>
 					<div class="desc">DATE</div>
 				</div>
 			</div>

@@ -8,8 +8,8 @@ class Timesheet_model extends CI_Model {
 	}
 
 	public function savedata($timesheetValues) {
-    $startDate = strtotime('now');
-    $endDate = strtotime('+ 1 hour');
+    $startDate = strtotime($timesheetValues['createddate'] . ' ' . $timesheetValues['createdTime']);
+    $endDate = strtotime($timesheetValues['createddate'] . ' ' . $timesheetValues['endedTime']);
     $data = array(
       'pid' => $timesheetValues['pid'],
       'uid' => $this->session->userdata('uid'),
