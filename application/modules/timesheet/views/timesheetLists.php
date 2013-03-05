@@ -3,8 +3,11 @@
   <div ng-repeat='idate in dates' ng-show="idate.f">
     <h1>{{idate.d}}</h1>
     <div ng-repeat="timeSheet in timeSheets | filter:{date: idate.d} ">
-      <div>{{timeSheet.description }}</div>
-
+        <div ng-hide="editMode" ng-click="editMode=true;" ng-bind-html="timeSheet.showData">
+        </div>
+        <div ng-show="editMode">
+            <input type="text" ng-model="value" ng-enter="editMode=false"/>
+        </div>
     </div>
   </div>
 </div>

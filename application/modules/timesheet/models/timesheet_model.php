@@ -10,13 +10,14 @@ class Timesheet_model extends CI_Model {
 	public function savedata($timesheetValues) {
     $startDate = strtotime($timesheetValues['createddate'] . ' ' . $timesheetValues['createdTime']);
     $endDate = strtotime($timesheetValues['createddate'] . ' ' . $timesheetValues['endedTime']);
+    $total =  $endDate - $startDate;
     $data = array(
       'pid' => $timesheetValues['pid'],
       'uid' => $this->session->userdata('uid'),
       'description' => $timesheetValues['description'],
       'created' => $startDate,
       'ended' => $endDate,
-      'total' => 20,
+      'total' => $total,
     );
     $this->db->insert('timesheet', $data);
     $tid = $this->db->insert_id();
@@ -33,9 +34,7 @@ class Timesheet_model extends CI_Model {
    * @return object of timesheets
    */
   public function gettsdata($tsParams = null) {
-    $this->db->select();
-    $this->db->from('timesheet');
-
+    $this->db->select()->from('timesheet')->order_by('created desc');
     if ($tsParams) {
       foreach ($tsParams as $key => $value) {
         $this->db->where($key, $value);

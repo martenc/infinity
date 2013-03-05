@@ -1,10 +1,13 @@
 <?php
 
-class Project_model extends CI_Model {
+class Project_model extends MY_Model {
 
   // calling the constructor
   public function __construct() {
     parent::__construct();
+    $this->table_name = 'project';
+    $this->primary_key = 'pid';
+    $this->order_by = 'pid DESC';
   }
 
   public function save($projectValues) {

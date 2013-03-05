@@ -19,6 +19,7 @@ class Timesheet extends CI_Controller {
     $data['scripts'][] = 'vendor/ui-bootstrap-tpls-0.1.0.min.js';
     $data['scripts'][] = 'vendor/angular-ui.js';
     $data['scripts'][] = 'vendor/jquery-ui-1.10.0.custom.min.js';
+    $data['scripts'][] = 'vendor/angular-sanitize.min.js';
 
     $data['stylesheets'][] = 'jquery-ui-modified.css';
     //$data['stylesheets'][] = 'bootstrap-timepicker.css';
@@ -80,8 +81,8 @@ class Timesheet extends CI_Controller {
       //to check if date has data used in ng-show
       $dates[$tempDate]->flag = 0;
     }
-
-
+    $this->load->model('project/project_model');
+    $projects = array();
     foreach ($timesheets as $key => $value) {
       //convert the date in desired format
       $valueDate = date('d-m-Y', $value->created);
@@ -90,8 +91,19 @@ class Timesheet extends CI_Controller {
         //to check if date has data used in ng-show
         $dates[$valueDate]->flag = 1;
       }
+      if (in_array($value->pid, $projects)) {
+         $projectName = $projects[$value->pid];
+      }
+      else {
+        $project = $this->project_model->get($value->pid);
+        $projects[$value->pid] = $projectName = $project['name'];
+      }
+
+      $timesheets[$key]->projectName = $projectName;
       $timesheets[$key]->date = $valueDate;
+      $timesheets[$key]->showData = $this->load->view('timesheetListItem', array('item' => $value), true);
     }
+
 
     print json_encode(array('allDates' => $dates, 'timesheets' => $timesheets));
   }

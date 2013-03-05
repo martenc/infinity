@@ -1,4 +1,4 @@
-var timeSheetApp = angular.module('timeSheetApp', ['ui.bootstrap', 'ui']);
+var timeSheetApp = angular.module('timeSheetApp', ['ui.bootstrap', 'ui', 'ngSanitize']);
 
 timeSheetApp.factory('sharedProjects', ['$http', '$rootScope', function($http, $rootScope) {
   var projects = [];
@@ -102,12 +102,13 @@ timeSheetApp.controller('TimeSheetCtrl', function( sharedProjects,timeSheetData,
   $scope.startTime = converted_current_time['hour'] +':'+ converted_current_time['minutes']+' ' + converted_current_time['meridian'];
   $scope.endTime = converted_current_time['hour'] +':'+ converted_current_time['minutes']+' ' + converted_current_time['meridian'];
 
-  //add timesheet todatabase and scope
+
+  console.log($scope);
+
+    //add timesheet todatabase and scope
   $scope.addTimeSheet = function() {
     //format date as per requirement
     timeSheetDateFormatted = $.datepicker.formatDate('dd-mm-yy', $scope.timesheetDate);
-
-    console.log($scope);
     $params = $.param({
       "description" : $scope.timesheetDescription,
       "pid" : $scope.timesheetProject,
@@ -166,6 +167,12 @@ function clearTimesheetForm($scope) {
 
 }
 
+/**
+ *
+ * @param date to be converted
+ * @return {Array} of hour minutes and  meridian
+ *
+ */
 function _conver_time_format(date) {
     var meridian = 'AM';
     var hour = date.getHours();
@@ -183,6 +190,25 @@ function _conver_time_format(date) {
     return converted;
 }
 
+
+timeSheetApp.directive('inlineEdit', function() {
+    return {
+        // can be in-lined or async loaded by xhr
+        // or inlined as JS string (using template property)
+        templateUrl: 'componentTpl.html',
+        scope: {
+            model: 'accessor'
+        }
+    };
+});
+
+timeSheetApp.directive('ngEnter', function() {
+    return function(scope, elm, attrs) {
+        elm.bind('keypress', function(e) {
+            if (e.charCode === 13) scope.$apply(attrs.ngEnter);
+        });
+    };
+});
 /*
 $(document).ready(function() {
 
