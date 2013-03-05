@@ -12,12 +12,6 @@ class Project extends CI_Controller {
     redirect('project/view');
   }
 
-  public function getjson() {
-    $this->load->model('project_model');
-    $projects = $this->project_model->get_project();
-    print json_encode($projects);
-  }
-
   // project list page
   public function view() {
     $data['scripts'][] = 'vendor/angular.min.js';
@@ -41,7 +35,28 @@ class Project extends CI_Controller {
     $this->load->view('createproject');
   }
 
-  public function save() {
+//  public function save() {
+//    if ($_POST) {
+//      // loading the model
+//      $this->load->model('project_model');
+//      print json_encode($this->project_model->save($_POST));
+//    }
+//    else {
+//      redirect('project/view');
+//    }
+//  }
+
+  public function getjson() {
+    $this->load->model('project_model');
+    $projects = $this->project_model->get_project();
+    print json_encode($projects);
+  }
+
+  /**
+   * This function is to save a new project. Angular is sending the JSON
+   * and the POST data is passed to model.
+   */
+  public function savejson() {
     if ($_POST) {
       // loading the model
       $this->load->model('project_model');
@@ -52,11 +67,21 @@ class Project extends CI_Controller {
     }
   }
 
-  public function savejson() {
-    if ($_POST) {
-      // loading the model
+  /**
+   *
+   */
+  public function editjson() {
+    if(check_if_post()) {
       $this->load->model('project_model');
-      print json_encode($this->project_model->save($_POST));
+      $data['pid'] = $this->input->post('pid');
+      $data['name'] = $this->input->post('name');
+      $edit = $this->project_model->edit_project($data);
+      if ($edit) {
+        $projects = $this->project_model->get_project();
+        print json_encode($projects);
+      }
+      else
+        print 'Some error was encountered, project unchanged.';
     }
     else {
       redirect('project/view');
@@ -70,8 +95,7 @@ class Project extends CI_Controller {
 
   // this is the view file for the edit part of project
   public function editproject() {
-    $this->load->view('project/project_list_partial');
-    print 123;
+    $this->load->view('project/project_edit_view');
   }
 
 }

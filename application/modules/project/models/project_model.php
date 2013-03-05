@@ -37,4 +37,15 @@ class Project_model extends MY_Model {
     return $query->result();
   }
 
+  /**
+   * This function will take the data including the project id
+   * and run and update statement.
+   * @param $data
+   */
+  public function edit_project($data) {
+    $this->db->where('pid', $data['pid']);
+    $this->db->update('project', $data);
+    return true;
+  }
+
 }

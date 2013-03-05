@@ -6,7 +6,7 @@
 
 	<div class="row-fluid">
     <div class="span6">
-      <div ng-controller="projViewCtrl">
+      <div>
         <div ng-view></div>
       </div>
     </div>
