@@ -5,6 +5,7 @@ class Timesheet_model extends CI_Model {
 	// calling the constructor
 	public function __construct() {
 		parent::__construct();
+
 	}
 
 	public function savedata($timesheetValues) {
@@ -21,10 +22,7 @@ class Timesheet_model extends CI_Model {
     );
     $this->db->insert('timesheet', $data);
     $tid = $this->db->insert_id();
-    $params = array('tid' => $tid);
-
-    $query = $this->gettsdata($params);
-    $query[0]->date = date('d-m-Y', $startDate);
+    $query = $this->getitemdata($tid);
     $result['insert'] = $query[0];
     return $result;
 	}
@@ -34,14 +32,41 @@ class Timesheet_model extends CI_Model {
    * @return object of timesheets
    */
   public function gettsdata($tsParams = null) {
-    $this->db->select()->from('timesheet')->order_by('created desc');
+    $this->db->select('tid')->from('timesheet')->order_by('created desc');
     if ($tsParams) {
       foreach ($tsParams as $key => $value) {
         $this->db->where($key, $value);
       }
     }
     $query = $this->db->get();
-    return $query->result();
+    $result = array();
+    foreach ($query->result() as $key => $value) {
+      $result[] = $value->tid;
+    }
+    return $result;
+  }
+
+  public function getitemdata($tids) {
+    if (!isset($tids)) {
+      return '';
+    }
+    if(!is_array($tids)) {
+      $tids = array($tids);
+    }
+
+    $this->db->select('project.name as projectName, clients.name as clientName, timesheet.*');
+    $this->db->from('timesheet');
+    $this->db->join('project', 'project.pid = timesheet.pid');
+    $this->db->join('clients', 'clients.cid = project.client');
+    $this->db->where_in('tid', $tids);
+    $query = $this->db->get();
+    $result = array();
+    foreach ($query->result() as $key => $value) {
+      $result[$key] = $value;
+      $result[$key]->date = date('d-m-Y', $value->created);
+      $result[$key]->showData = $this->load->view('timesheetListItem', array('item' => $value), true);
+    }
+    return $result;
   }
 
 }
