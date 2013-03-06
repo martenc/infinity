@@ -43,6 +43,8 @@ class Timesheet_model extends CI_Model {
     foreach ($query->result() as $key => $value) {
       $result[] = $value->tid;
     }
+
+
     return $result;
   }
 
@@ -59,6 +61,7 @@ class Timesheet_model extends CI_Model {
     $this->db->join('project', 'project.pid = timesheet.pid');
     $this->db->join('clients', 'clients.cid = project.client');
     $this->db->where_in('tid', $tids);
+    $this->db->order_by('timesheet.created', "desc");
     $query = $this->db->get();
     $result = array();
     foreach ($query->result() as $key => $value) {
